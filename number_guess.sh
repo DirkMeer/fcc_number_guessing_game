@@ -19,14 +19,6 @@ ASK_FOR_NUM() {
   then
     echo "That is not an integer, guess again:"
     ASK_FOR_NUM
-  elif [[ $NUM -gt 1000 ]]
-  then
-    echo "Number too high!"
-    ASK_FOR_NUM
-  elif [[ $NUM -lt 1 ]]
-  then
-    echo "Number too low!"
-    ASK_FOR_NUM
   fi
 }
 
