@@ -47,15 +47,32 @@ NUMBER_GUESSING() {
     echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
   fi
 
-  #Run first time before starting the loop
-  ASK_FOR_NUM 
-
   while [[ $NUM -ne $RAND_NUM ]]
   do
     ASK_FOR_NUM
-
-
+    NUM_OF_GUESSES=$(($NUM_OF_GUESSES + 1))
+    if  [[ $NUM > $RAND_NUM ]]
+    then
+      echo "It's lower than that, guess again:"
+    elif [[ $NUM < $RAND_NUM ]]
+    then
+      echo "It's higher than that, guess again:"
+    fi
   done
+
+  #Once the while loop breaks number has been guessed:
+  echo "You guessed it in $NUM_OF_GUESSES tries. The secret number was $RAND_NUM. Nice job!"
+  #Now we need to update the database for this user:
+  UPDATE_GAMES_PLAYED=$($PSQL "UPDATE users SET games_played = games_played + 1 WHERE username = '$USERNAME'")
+  GET_BEST_GAME=$($PSQL "SELECT best_game FROM users WHERE username = '$USERNAME'")
+  if [[ $GET_BEST_GAME -eq 0 ]]
+  then
+    UPDATE_BEST_GAME=$($PSQL "UPDATE users SET best_game = $NUM_OF_GUESSES WHERE username = '$USERNAME'")
+  elif [[ $GET_BEST_GAME > $NUM_OF_GUESSES ]]
+  then
+    UPDATE_BEST_GAME=$($PSQL "UPDATE users SET best_game = $NUM_OF_GUESSES WHERE username = '$USERNAME'")
+  fi
+
 }
 
 NUMBER_GUESSING
