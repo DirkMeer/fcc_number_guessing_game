@@ -2,12 +2,33 @@
 
 PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 RAND_NUM=$(($RANDOM % 1000 + 1)) 
+NUM=0
 
+
+ASK_FOR_NUM() {
+  if [[ -z $1 ]]
+  then
+    echo "Guess the secret number between 1 and 1000:"
+  else
+    echo $1
+  fi
+  read NUM
+  if [[ ! $NUM =~ ^[0-9]+$ ]]
+  then
+    echo "That is not an integer, guess again:"
+    ASK_FOR_NUM
+  elif [[ -z $NUM ]]
+  then
+    echo "That is not an integer, guess again:"
+    ASK_FOR_NUM
+  fi
+}
 
 NUMBER_GUESSING() {
   echo -e "Enter your username:"
   read USERNAME
   USERNAME_RESULT=$($PSQL "SELECT user_id FROM users WHERE username ='$USERNAME'")
+  NUM_OF_GUESSES=0
 
   #check if username already exists
   if [[ -z $USERNAME_RESULT ]]
@@ -26,7 +47,15 @@ NUMBER_GUESSING() {
     echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
   fi
 
-  
+  #Run first time before starting the loop
+  ASK_FOR_NUM 
+
+  while [[ $NUM -ne $RAND_NUM ]]
+  do
+    ASK_FOR_NUM
+
+
+  done
 }
 
 NUMBER_GUESSING

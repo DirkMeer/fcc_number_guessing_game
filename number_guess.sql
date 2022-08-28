@@ -90,13 +90,34 @@ ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.u
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.users VALUES (1, 'SPONBYBOB', 0, 0);
+INSERT INTO public.users VALUES (2, 'user_1661708369625', 0, 0);
+INSERT INTO public.users VALUES (3, 'user_1661708369624', 0, 0);
+INSERT INTO public.users VALUES (4, 'user_1661708546494', 0, 0);
+INSERT INTO public.users VALUES (5, 'user_1661708546493', 0, 0);
+INSERT INTO public.users VALUES (6, 'user_1661708622852', 0, 0);
+INSERT INTO public.users VALUES (7, 'user_1661708622851', 0, 0);
+INSERT INTO public.users VALUES (8, 'user_1661708700979', 0, 0);
+INSERT INTO public.users VALUES (9, 'user_1661708700978', 0, 0);
+INSERT INTO public.users VALUES (10, 'user_1661708846144', 0, 0);
+INSERT INTO public.users VALUES (11, 'user_1661708846143', 0, 0);
+INSERT INTO public.users VALUES (12, 'user_1661708966116', 0, 0);
+INSERT INTO public.users VALUES (13, 'user_1661708966115', 0, 0);
+INSERT INTO public.users VALUES (14, 'user_1661709750300', 0, 0);
+INSERT INTO public.users VALUES (15, 'user_1661709750299', 0, 0);
+INSERT INTO public.users VALUES (16, 'user_1661709826664', 0, 0);
+INSERT INTO public.users VALUES (17, 'user_1661709826663', 0, 0);
+INSERT INTO public.users VALUES (18, 'sponbybyb', 0, 0);
+INSERT INTO public.users VALUES (19, 'blaat', 0, 0);
+INSERT INTO public.users VALUES (20, 'user_1661710243287', 0, 0);
+INSERT INTO public.users VALUES (21, 'user_1661710243286', 0, 0);
 
 
 --
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.users_user_id_seq', 1, false);
+SELECT pg_catalog.setval('public.users_user_id_seq', 21, true);
 
 
 --
